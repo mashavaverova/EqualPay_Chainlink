@@ -1,0 +1,98 @@
+{
+    "schemaVersion": "1.1",
+    "company": {
+        "legalName": "Example Workshop AB",
+        "country": "SE",
+        "companyId": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "period": {
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+    },
+    "currency": "SEK",
+    "population": "employees",
+    "levelScheme": "GLOBAL_6_BAND",
+    "groups": [
+        {
+            "level": "Entry",
+            "gender": "F",
+            "nHeadcount": 6,
+            "fteBps": 52000,
+            "sumBasePay": "1900000",
+            "sumBonusPay": "50000",
+            "sumHours": 9800
+        },
+        {
+            "level": "Entry",
+            "gender": "M",
+            "nHeadcount": 8,
+            "fteBps": 76000,
+            "sumBasePay": "2700000",
+            "sumBonusPay": "80000",
+            "sumHours": 14100
+        },
+        {
+            "level": "Intermediate",
+            "gender": "F",
+            "nHeadcount": 10,
+            "fteBps": 94000,
+            "sumBasePay": "4200000",
+            "sumBonusPay": "120000",
+            "sumHours": 17600
+        },
+        {
+            "level": "Intermediate",
+            "gender": "M",
+            "nHeadcount": 18,
+            "fteBps": 172000,
+            "sumBasePay": "8400000",
+            "sumBonusPay": "260000",
+            "sumHours": 32500
+        },
+        {
+            "level": "Senior",
+            "gender": "F",
+            "nHeadcount": 5,
+            "fteBps": 50000,
+            "sumBasePay": "3000000",
+            "sumBonusPay": "150000",
+            "sumHours": 9400
+        },
+        {
+            "level": "Senior",
+            "gender": "M",
+            "nHeadcount": 9,
+            "fteBps": 90000,
+            "sumBasePay": "5850000",
+            "sumBonusPay": "320000",
+            "sumHours": 16800
+        },
+        {
+            "level": "Manager",
+            "gender": "F",
+            "nHeadcount": 2,
+            "fteBps": 20000,
+            "sumBasePay": "1500000",
+            "sumBonusPay": "120000",
+            "sumHours": 3800
+        },
+        {
+            "level": "Manager",
+            "gender": "M",
+            "nHeadcount": 3,
+            "fteBps": 30000,
+            "sumBasePay": "2700000",
+            "sumBonusPay": "250000",
+            "sumHours": 5700
+        }
+    ],
+    "notes": {
+        "payPeriod": "annual",
+        "basePayDefinition": "gross_base_pay",
+        "includesBonus": true,
+        "includesEquity": false
+    },
+    "privacy": {
+        "minCellHeadcount": 5
+    }
+}

@@ -1,0 +1,194 @@
+{
+    "title": "EqualPayReport",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schemaVersion",
+        "company",
+        "period",
+        "currency",
+        "population",
+        "levelScheme",
+        "groups",
+        "notes",
+        "privacy"
+    ],
+    "properties": {
+        "schemaVersion": {
+            "type": "string",
+            "enum": [
+                "1.1"
+            ]
+        },
+        "company": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "legalName",
+                "country",
+                "companyId"
+            ],
+            "properties": {
+                "legalName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                },
+                "country": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
+                },
+                "companyId": {
+                    "type": "string",
+                    "pattern": "^0x[a-fA-F0-9]{64}$"
+                }
+            }
+        },
+        "period": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "start",
+                "end"
+            ],
+            "properties": {
+                "start": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                },
+                "end": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                }
+            }
+        },
+        "currency": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+        },
+        "population": {
+            "type": "string",
+            "enum": [
+                "employees"
+            ]
+        },
+        "levelScheme": {
+            "type": "string",
+            "enum": [
+                "GLOBAL_6_BAND"
+            ]
+        },
+        "groups": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "level",
+                    "gender",
+                    "nHeadcount",
+                    "fteBps",
+                    "sumBasePay"
+                ],
+                "properties": {
+                    "level": {
+                        "type": "string",
+                        "enum": [
+                            "Entry",
+                            "Intermediate",
+                            "Senior",
+                            "Lead",
+                            "Manager",
+                            "Executive"
+                        ]
+                    },
+                    "gender": {
+                        "type": "string",
+                        "enum": [
+                            "F",
+                            "M",
+                            "X"
+                        ]
+                    },
+                    "nHeadcount": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10000000
+                    },
+                    "fteBps": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000000000,
+                        "description": "Total FTE in basis points. Example: 1.0 FTE = 10000, 0.5 FTE = 5000."
+                    },
+                    "sumBasePay": {
+                        "type": "string",
+                        "pattern": "^\\d+$",
+                        "maxLength": 32,
+                        "description": "Aggregated base pay for this cell in smallest currency unit (e.g., SEK). Stored as string to avoid float issues."
+                    },
+                    "sumBonusPay": {
+                        "type": "string",
+                        "pattern": "^\\d+$",
+                        "maxLength": 32
+                    },
+                    "sumHours": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 5000000000,
+                        "description": "Total paid working hours for this cell in the reporting period (optional but recommended)."
+                    }
+                }
+            }
+        },
+        "notes": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "payPeriod",
+                "basePayDefinition",
+                "includesBonus",
+                "includesEquity"
+            ],
+            "properties": {
+                "payPeriod": {
+                    "type": "string",
+                    "enum": [
+                        "annual"
+                    ]
+                },
+                "basePayDefinition": {
+                    "type": "string",
+                    "enum": [
+                        "gross_base_pay"
+                    ],
+                    "description": "Defines what base pay means in this dataset."
+                },
+                "includesBonus": {
+                    "type": "boolean"
+                },
+                "includesEquity": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "privacy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "minCellHeadcount"
+            ],
+            "properties": {
+                "minCellHeadcount": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "description": "Cells with nHeadcount below this should be omitted or aggregated to protect privacy. Recommended: 5."
+                }
+            }
+        }
+    }
+}
